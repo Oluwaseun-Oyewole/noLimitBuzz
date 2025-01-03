@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import Button from "../../components/Button/";
-import Loader from "../../components/Loading";
+import Button from "../../components/Button/index";
+import Loader from "../../components/Loading/index";
 import { useUserDetailsFetcher } from "../../hooks/useDetailsFetcher";
 
 const UserDetails = () => {
