@@ -1,3 +1,5 @@
+import requestError from "../components/error";
+
 export async function fetchWrapper({
   cache = "no-cache",
   tags,
@@ -5,6 +7,7 @@ export async function fetchWrapper({
   revalidate,
   headers,
   options,
+  signal,
 }: {
   cache?: RequestCache;
   tags?: string[];
@@ -12,6 +15,7 @@ export async function fetchWrapper({
   revalidate?: number;
   headers?: HeadersInit;
   options?: RequestInit;
+  signal?: AbortSignal;
 }) {
   try {
     const response = await fetch(endpoint, {
@@ -21,12 +25,18 @@ export async function fetchWrapper({
         "Content-Type": "application/json",
         ...headers,
       },
+      signal,
       cache,
       ...(tags && { next: { tags, revalidate } }),
     });
+    if (!response.ok) return;
     return await response.json();
-  } catch (e) {
-    // throw e;
-    return e;
+  } catch (error) {
+    if (error instanceof DOMException && error?.name === "AbortError") {
+      requestError("Fetch Aborted");
+    } else {
+      requestError((error as Error)?.message || "Something went wrong");
+    }
+    return;
   }
 }
