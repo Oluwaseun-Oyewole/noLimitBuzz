@@ -1,6 +1,6 @@
 import { appServices } from "../services";
 
-export async function userLoader() {
+export async function usersLoader() {
   return await appServices.usersService();
 }
 

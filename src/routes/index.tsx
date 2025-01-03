@@ -1,27 +1,15 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
-import { userLoader } from "../loaders";
+import { createBrowserRouter } from "react-router-dom";
+import AppLayout from "../layout";
 import ErrorPage from "../pages/Error";
-import { Home, UserDetails } from "./lazy";
+import { appRoutes } from "./app.routes";
 import { Routes } from "./routes";
 
 const routes = createBrowserRouter([
   {
     path: Routes.base,
-    element: <Navigate to={Routes.users} />,
+    element: <AppLayout />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: Routes.users,
-    element: <Home />,
-    loader: userLoader,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: Routes.userDetails,
-    element: <UserDetails />,
-    errorElement: <ErrorPage />,
-    //@ts-ignore
-    // loader: userLoaderDetails,
+    children: [...appRoutes()],
   },
 ]);
 

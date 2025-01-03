@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { appServices } from "../services";
 import { UsersResponse } from "../services/types";
 
-export const useFetcher = () => {
+export const useUserDetailsFetcher = () => {
   const [userData, setUserData] = useState<UsersResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
