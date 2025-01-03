@@ -1,4 +1,4 @@
-import requestError from "../components/error";
+import requestError from "../components/Error";
 
 export async function fetchWrapper({
   cache = "no-cache",
