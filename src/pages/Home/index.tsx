@@ -18,7 +18,7 @@ const Home = () => {
       try {
         const users = await appServices.usersService(page);
         setUsersData((prevUsers) => [...prevUsers, ...users]);
-        if (users?.length < 6) {
+        if (users?.length < 9) {
           setHasMore(false); // No more users to fetch
         }
         setPage((prevPage) => prevPage + 1);
@@ -32,17 +32,12 @@ const Home = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         const target = entries[0];
-        if (target.isIntersecting && hasMore && !isLoading) {
-          fetchUsers();
-        }
+        if (target.isIntersecting && hasMore && !isLoading) fetchUsers();
       },
       { threshold: 1.0 }
     );
 
-    if (observerRef.current) {
-      observer.observe(observerRef.current);
-    }
-
+    if (observerRef.current) observer.observe(observerRef.current);
     return () => {
       if (observerRef.current) {
         observer.unobserve(observerRef.current);
@@ -82,10 +77,10 @@ const Home = () => {
             </li>
           ))}
         </ul>
-        <div ref={observerRef} className="h-10"></div>
+        <div ref={observerRef} className="h-10" />
         {isLoading && page === 1 && <p>fetching users...</p>}
         {isLoading && page > 1 && <p>fetching more users...</p>}
-        {!hasMore && <p></p>}
+        {!hasMore && <p />}
       </div>
     </div>
   );
