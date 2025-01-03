@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Button from "../../components/Button";
+import Button from "../../components/Button/index";
 import { appServices } from "../../services";
 import { UsersResponse } from "../../services/types";
 
