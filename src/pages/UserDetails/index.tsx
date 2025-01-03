@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import Button from "../../components/Button/index";
+import Button from "../../components/button/index";
 import Loader from "../../components/Loading/index";
 import { useUserDetailsFetcher } from "../../hooks/useDetailsFetcher";
 
