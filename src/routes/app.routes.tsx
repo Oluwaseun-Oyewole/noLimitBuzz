@@ -7,7 +7,6 @@ export const appRoutes = () => {
     {
       path: Routes.users,
       element: <Home />,
-      // loader: usersLoader,
     },
     {
       path: Routes.userDetails,
